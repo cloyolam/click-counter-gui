@@ -19,7 +19,7 @@ def add_character():
     column_elems.append(tk.Label(frame, text=new_label, bg=character_color))
     th_color = "#" + ("%06x" % 10000000)
     for th in ["0.50", "0.30", "0.15"]:
-        if new_label not in count_dict:
+        if th not in count_dict[new_label]:
             count_dict[new_label][th] = {m: 0 for m in metrics}
         column_elems.append(tk.Label(frame, text=th, bg=th_color))
         for ix, metric in enumerate(['TP', 'FN', 'FP']):
