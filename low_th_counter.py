@@ -48,8 +48,8 @@ def increase_frame_number():
 
 
 def save_dict():
-    global count_dict, frame_number
-    output_fn = input("Enter output name: ")
+    global count_dict, frame_number, output_fn
+    # output_fn = input("Enter output name: ")
     with open(f'{output_fn}_frame-{str(frame_number).zfill(6)}.pkl', 'wb') as f:
         pickle.dump(count_dict, f)
 
@@ -78,10 +78,12 @@ def all_false_negatives(character):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="GUI for characters metrics")
     parser.add_argument("-d", "--load_dict", default=None, help="Load a .pkl dictionary")
+    parser.add_argument("-o", "--output_fn", required=True, help="Choose an output filename for the saved dictionary.")
     args = parser.parse_args()
 
     root = tk.Tk()
     n_col = 0
+    output_fn = args.output_fn
     if args.load_dict is not None:
         frame_number = int(args.load_dict[-10:-4])
         with open(args.load_dict, 'rb') as f:
